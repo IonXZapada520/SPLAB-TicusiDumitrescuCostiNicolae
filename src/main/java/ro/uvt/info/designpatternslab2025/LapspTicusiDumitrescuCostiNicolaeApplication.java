@@ -1,42 +1,37 @@
 package ro.uvt.info.designpatternslab2025;
 
+import org.springframework.context.ApplicationContext;
+import ro.uvt.info.designpatternslab2025.difexamples.ClientComponent;
+import ro.uvt.info.designpatternslab2025.difexamples.SingletonComponent;
+import ro.uvt.info.designpatternslab2025.difexamples.TransientComponent;
+// ---
 
-
-import ro.uvt.info.designpatternslab2025.model.AlignCenter;
-import ro.uvt.info.designpatternslab2025.model.AlignLeft;
-import ro.uvt.info.designpatternslab2025.model.AlignRight;
-import ro.uvt.info.designpatternslab2025.model.*;
-
-
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class LapspTicusiDumitrescuCostiNicolaeApplication {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
+        ApplicationContext context =
+                SpringApplication.run(LapspTicusiDumitrescuCostiNicolaeApplication.class, args);
 
-        Section cap1 = new Section("Capitolul 1");
-        Paragraph p1 = new Paragraph("Paragraph 1");
-        cap1.add(p1);
-        Paragraph p2 = new Paragraph("Paragraph 2");
-        cap1.add(p2);
-        Paragraph p3 = new Paragraph("Paragraph 3");
-        cap1.add(p3);
-        Paragraph p4 = new Paragraph("Paragraph 4");
-        cap1.add(p4);
+        TransientComponent transientBean =
+                context.getBean(TransientComponent.class);
+        transientBean.operation(); // [cite: 146]
 
-        System.out.println("Printing without Alignment");
-        System.out.println();
-        cap1.print();
+        transientBean = context.getBean(TransientComponent.class);
+        transientBean.operation();
 
-        p1.setAlignStrategy(new AlignCenter());
-        p2.setAlignStrategy(new AlignRight());
-        p3.setAlignStrategy(new AlignLeft());
+        SingletonComponent singletonBean =
+                context.getBean(SingletonComponent.class);
+        singletonBean.operation(); // [cite: 156]
 
-        System.out.println();
-        System.out.println("Printing with Alignment");
-        System.out.println();
-        cap1.print();
+        singletonBean = context.getBean(SingletonComponent.class);
+        singletonBean.operation();
+
+        ClientComponent c = context.getBean(ClientComponent.class);
+        c.operation();
     }
 }
