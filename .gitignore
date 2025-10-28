@@ -35,3 +35,12 @@ out/
 
 ### VS Code ###
 .vscode/
+# Project exclude paths [cite: 240]
+/out/ [cite: 241]
+/.idea/ [cite: 242]
+/*.iml [cite: 243]
+
+# Adăugări comune pentru proiecte Spring Boot / Gradle / Maven
+/build/
+/.gradle/
+/target/
