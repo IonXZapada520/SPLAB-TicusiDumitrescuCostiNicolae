@@ -1,22 +1,20 @@
-// ro/uvt/.../commands/GetAllBooksCommand.java
+// commands/GetAllBooksCommand.java
 package ro.uvt.info.designpatternslab2025.commands;
 
 import ro.uvt.info.designpatternslab2025.model.Book;
-import ro.uvt.info.designpatternslab2025.services.BooksService;
+import ro.uvt.info.designpatternslab2025.persistence.BooksRepository;
 import java.util.List;
-
 
 public class GetAllBooksCommand implements Command<List<Book>> {
 
-    private final BooksService booksService; // Receiver-ul [cite: 518]
+    private final BooksRepository booksRepository; // Folosim Repository
 
-    public GetAllBooksCommand(BooksService booksService) {
-        this.booksService = booksService;
+    public GetAllBooksCommand(BooksRepository booksRepository) {
+        this.booksRepository = booksRepository;
     }
 
     @Override
     public List<Book> execute() {
-
-        return booksService.getAllBooks();
+        return booksRepository.findAll(); // [cite: 274]
     }
 }

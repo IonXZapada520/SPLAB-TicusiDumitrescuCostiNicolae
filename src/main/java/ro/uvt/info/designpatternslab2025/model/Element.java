@@ -1,15 +1,31 @@
+
 package ro.uvt.info.designpatternslab2025.model;
 
-public interface Element {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    void print();
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Data
+@NoArgsConstructor(force = true)
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public abstract class Element {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    void add(Element element);
+    public abstract void print();
 
-
-    void remove(Element element);
-
-
-    Element get(int index);
+    public void add(Element element) {
+        throw new UnsupportedOperationException();
+    }
+    public void remove(Element element) {
+        throw new UnsupportedOperationException();
+    }
+    public Element get(int index) {
+        throw new UnsupportedOperationException();
+    }
 }

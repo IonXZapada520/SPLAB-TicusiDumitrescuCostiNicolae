@@ -1,6 +1,6 @@
 
 package ro.uvt.info.designpatternslab2025.model;
-public class Image implements Element {
+public class Image extends Element {
 
     private String url;
 

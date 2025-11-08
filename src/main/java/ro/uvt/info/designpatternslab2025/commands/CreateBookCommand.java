@@ -1,21 +1,21 @@
-
+// commands/CreateBookCommand.java
 package ro.uvt.info.designpatternslab2025.commands;
 
 import ro.uvt.info.designpatternslab2025.model.Book;
-import ro.uvt.info.designpatternslab2025.services.BooksService;
+import ro.uvt.info.designpatternslab2025.persistence.BooksRepository;
 
 public class CreateBookCommand implements Command<Book> {
 
-    private final BooksService booksService;
-    private final Book book;
+    private final BooksRepository booksRepository;
+    private final Book book; // [cite: 271]
 
-    public CreateBookCommand(BooksService booksService, Book book) {
-        this.booksService = booksService;
+    public CreateBookCommand(BooksRepository booksRepository, Book book) {
+        this.booksRepository = booksRepository;
         this.book = book;
     }
 
     @Override
     public Book execute() {
-        return booksService.createBook(book);
+        return booksRepository.save(book); // [cite: 272]
     }
 }
