@@ -1,15 +1,25 @@
-
+// model/Section.java
 package ro.uvt.info.designpatternslab2025.model;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Section implements Element {
+@EqualsAndHashCode(callSuper = true)
+@Entity // [cite: 237]
+@Data
+@NoArgsConstructor(force = true) // [cite: 239]
+public class Section extends Element { // <-- Schimbare importantă: extends
 
     private String title;
 
-
+    @OneToMany(cascade = CascadeType.ALL) // [cite: 250, 291]
     private List<Element> children = new ArrayList<>();
 
     public Section(String title) {
@@ -18,10 +28,7 @@ public class Section implements Element {
 
     @Override
     public void print() {
-
-        System.out.println(title); // Imprimă titlul secțiunii
-
-
+        System.out.println(title);
         for (Element child : children) {
             child.print();
         }
@@ -31,14 +38,5 @@ public class Section implements Element {
     public void add(Element element) {
         children.add(element);
     }
-
-    @Override
-    public void remove(Element element) {
-        children.remove(element);
-    }
-
-    @Override
-    public Element get(int index) {
-        return children.get(index);
-    }
+    // ... implementează și remove/get dacă e nevoie ...
 }

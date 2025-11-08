@@ -1,7 +1,7 @@
 
 package ro.uvt.info.designpatternslab2025.model;
 
-public class Table implements Element {
+public class Table extends Element {
 
     private String title;
     public Table(String title) {

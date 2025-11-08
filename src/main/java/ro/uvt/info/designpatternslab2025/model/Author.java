@@ -1,9 +1,22 @@
-package ro.uvt.info.designpatternslab2025.model; // Asigură-te că pachetul este corect
 
+package ro.uvt.info.designpatternslab2025.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor(force = true)
 public class Author {
-    private String name;
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
 
     public Author(String name) {
         this.name = name;
