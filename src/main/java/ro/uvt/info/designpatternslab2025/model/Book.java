@@ -1,42 +1,16 @@
-// model/Book.java
+
 package ro.uvt.info.designpatternslab2025.model;
-import java.util.ArrayList;
-import java.util.List;
 
+import lombok.Data;
 
+@Data
 public class Book {
-
     private String title;
-    private List<Author> authors = new ArrayList<>();
-    private List<Element> content = new ArrayList<>();
+    private String author;
 
-    public Book(String title) {
+
+    public Book(String title, String author) {
         this.title = title;
-    }
-
-
-    public void addAuthor(Author author) {
-        authors.add(author);
-    }
-
-
-    public void addContent(Element element) {
-        content.add(element);
-    }
-
-    public void print() {
-
-        System.out.println("Book: " + title);
-
-
-        System.out.println("Authors:");
-        for (Author author : authors) {
-            author.print(); // [cite: 219]
-        }
-
-
-        for (Element element : content) {
-            element.print();
-        }
+        this.author = author;
     }
 }
